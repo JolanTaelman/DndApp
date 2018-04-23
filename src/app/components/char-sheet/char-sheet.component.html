@@ -1,0 +1,52 @@
+  <div class="ui stackable celled grid container">
+  <div class="two column row">
+    <div class="column">  <div class="ui segment">Name: {{_charsheet.name}}</div></div>
+    <div class="column">   <div class="ui segment">Race: {{_charsheet.race}}</div></div>
+  </div>
+
+  <div class="four column row">
+    <div class="column"> <div class="ui segment">Class: {{_charsheet.dndclass.name}}</div></div>
+    <div class="column">  <div class="ui segment">Level: {{_charsheet.dndclass.level}}</div></div>
+    <div class="column"> <div class="ui segment">Hit Dice: {{_charsheet.dndclass.level}}D{{_charsheet.dndclass.hitDice}} </div></div>
+    <div class="column"> <div class="ui segment">Spellcaster: {{_charsheet.dndclass.spellcaster}}</div></div>
+  </div>
+ 
+  <div class="ui container">
+    <div class="ui celled table">
+      <thead>
+        <tr>
+        <th>Spell name</th>
+        <th>Spell Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let spell of _charsheet.spells">
+        <td>{{spell.name}}</td>
+        <td>{{spell.description}}</td>
+        </tr>
+      </tbody>
+    </div>
+  </div>
+</div>
+
+
+
+<!--
+<div class="form">
+  <form (submit) = "addSheet(name.value, race.value, class.value)">
+    <label for="name">Name</label>
+    <input type="text" #name>
+    <br>
+    <label for="race">Race</label>
+    <select name="race" #race>
+      <option *ngFor="let race of races">{{race}}</option> 
+     </select>
+     <br>
+     <label for="class">Class</label>
+     <select name="class" #class>
+       <option *ngFor="let class of classes">{{class.name}}</option> 
+      </select> 
+  </form>
+ </div>
+</div>
+-->

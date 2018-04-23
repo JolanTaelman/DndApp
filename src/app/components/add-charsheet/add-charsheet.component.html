@@ -1,0 +1,40 @@
+<div class="ui large form segment">
+    <h3 class="ui header">Add Charsheet</h3>
+    <div class="field">
+      <label for="name">Name:</label> 
+      <input id="name" name="name" #name>
+    </div>
+    <div class="field">
+      <label for="race">Race</label>
+        <select name="race" #race>
+         <option *ngFor="let race of races">{{race}}</option> 
+         </select>
+    </div>
+    <div class="field">
+        <label for="class">Class</label>
+         <select name="class" #class>
+           <option *ngFor="let class of classes">{{class.name}}</option> 
+          </select>
+    </div>
+    <button (click)="addSheet(name.value, race.value, class.value)"
+          class="ui positive right floated button">
+      add Character Sheet 
+    </button>
+  </div>
+
+  <!--div class="form">
+      <form (submit) = "addSheet(name.value, race.value, class.value)">
+        <label for="name">Name</label>
+        <input type="text" #name>
+        <br>
+        <label for="race">Race</label>
+        <select name="race" #race>
+          <option *ngFor="let race of races">{{race}}</option> 
+         </select>
+         <br>
+         <label for="class">Class</label>
+         <select name="class" #class>
+           <option *ngFor="let class of classes">{{class.name}}</option> 
+          </select> 
+      </form>
+     </div-->
