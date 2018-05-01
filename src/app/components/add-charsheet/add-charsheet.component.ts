@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DndClass } from '../../domain/dnd-class/dnd-class.module';
+import { Charsheet } from '../../domain/charsheet/charsheet.module';
 
 @Component({
   selector: 'app-add-charsheet',
@@ -7,15 +8,19 @@ import { DndClass } from '../../domain/dnd-class/dnd-class.module';
   styleUrls: ['./add-charsheet.component.css']
 })
 export class AddCharsheetComponent implements OnInit {
+
+  @Output() public newCharSheet = new EventEmitter <Charsheet> ();
+
   races: string[];
   classes: DndClass[];
   
 
   constructor() { }
 
-  addSheet(name: String, race: String, dndClass: DndClass){
-
-    
+  addSheet(name: string, race: string, dndClass: DndClass): boolean {
+  const characterSheet = new Charsheet(name, race, dndClass);
+  this.newCharSheet.emit(characterSheet);
+  return false;    
   }
 
   ngOnInit() {

@@ -1,1 +1,16 @@
-<app-char-sheet *ngFor="let charsheet of _charsheets"></app-char-sheet>
+<!--app-char-sheet *ngFor="let localCharsheet of _charsheets" [charsheet] = 'localCharsheet'></app-char-sheet-->
+
+<div class="ui segment">
+    <div class="ui cards">
+        <app-add-charsheet (newCharSheet)="newSheetAdded($event)">
+        </app-add-charsheet>
+    </div>
+</div>
+
+
+<div class="ui segment">
+    <div class="ui cards">
+        <app-char-sheet *ngFor='let localCharsheet of _sheetDataService._charsheets' [charsheet] = localCharsheet></app-char-sheet>
+    </div>
+</div>
+

@@ -1,14 +1,14 @@
   <div class="ui stackable celled grid container">
   <div class="two column row">
-    <div class="column">  <div class="ui segment">Name: {{_charsheet.name}}</div></div>
-    <div class="column">   <div class="ui segment">Race: {{_charsheet.race}}</div></div>
+    <div class="column">  <div class="ui segment">Name: {{charsheet.name}}</div></div>
+    <div class="column">   <div class="ui segment">Race: {{charsheet.race}}</div></div>
   </div>
 
   <div class="four column row">
-    <div class="column"> <div class="ui segment">Class: {{_charsheet.dndclass.name}}</div></div>
-    <div class="column">  <div class="ui segment">Level: {{_charsheet.dndclass.level}}</div></div>
-    <div class="column"> <div class="ui segment">Hit Dice: {{_charsheet.dndclass.level}}D{{_charsheet.dndclass.hitDice}} </div></div>
-    <div class="column"> <div class="ui segment">Spellcaster: {{_charsheet.dndclass.spellcaster}}</div></div>
+    <div class="column"> <div class="ui segment">Class: {{charsheet.dndclass.name}}</div></div>
+    <div class="column">  <div class="ui segment">Level: {{charsheet.dndclass.level}}</div></div>
+    <div class="column"> <div class="ui segment">Hit Dice: {{charsheet.dndclass.level}}D{{charsheet.dndclass.hitDice}} </div></div>
+    <div class="column"> <div class="ui segment">Spellcaster: {{charsheet.dndclass.spellcaster}}</div></div>
   </div>
  
   <div class="ui container">
@@ -20,7 +20,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let spell of _charsheet.spells">
+        <tr *ngFor="let spell of charsheet.spells">
         <td>{{spell.name}}</td>
         <td>{{spell.description}}</td>
         </tr>
