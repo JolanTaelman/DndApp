@@ -1,4 +1,4 @@
-<div class="ui large form segment">
+<!--<div class="ui large form segment">
     <h3 class="ui header">Add Charsheet</h3>
     <div class="field">
       <label for="name">Name:</label> 
@@ -21,20 +21,68 @@
       add Character Sheet 
     </button>
   </div>
+-->
 
-  <!--div class="form">
-      <form (submit) = "addSheet(name.value, race.value, class.value)">
-        <label for="name">Name</label>
-        <input type="text" #name>
-        <br>
-        <label for="race">Race</label>
-        <select name="race" #race>
-          <option *ngFor="let race of races">{{race}}</option> 
-         </select>
-         <br>
-         <label for="class">Class</label>
-         <select name="class" #class>
-           <option *ngFor="let class of classes">{{class.name}}</option> 
-          </select> 
-      </form>
-     </div-->
+<div class='ui large form segment'>
+  <form [formGroup]='charsheet' (ngSubmit)='onSubmit()'>
+    <h3>Add Charsheet</h3>
+
+    <div>
+      <label for='name_id'>name:</label>
+      <input type='text' id='name_id' formControlName='name'>
+    </div>
+
+    <div>
+      <label for='race_id'>race:</label>
+      <select id="race_id" formControlName='race'>
+        <option *ngFor="let race of races">{{race}}</option>
+      </select>
+
+    </div>
+
+    <div formArrayName='dndclass'>
+      <div>
+        <label for='dndclass_name'> Class:</label>
+        <div>
+          <label for='dndclass_name'>class name:</label>
+          <input type="text" id='dndclass_name' formControlName='classname'>
+
+          <label for='dndclass_hitdice'>hitdice:</label>
+          <input type="number" id="dndclass_hitdice" formControlName='hitdice'>
+
+          <label for='dndclass_spellcaster'>spellcaster:</label>
+          <br>
+          <label class="switch">
+            <input type="checkbox" id="dndclass_spellcaster" formControlName='spellcaster'>
+            <span class="slider round"></span>
+          </label>
+          <br>
+          <label for='dndclass_level'>level:</label>
+          <input type="text" id="dndclass_level" formControlName='level'>
+        </div>
+
+      </div>
+    </div>
+
+    <div formArrayName='spells' *ngFor='let item of charsheet.get("spells").controls; 
+    let i = index'>
+      <div [formGroupName]='i'>
+        <h3>Spells</h3>
+        <div>
+          <label for='spell_name'>spell name:</label>
+          <input type="text" id="spell_name" formControlName='spellname'>
+          <label for='spell_description'>spell description:</label>
+          <input type="text" id="spell_description" formControlName='spelldescription'>
+        </div>
+      </div>
+    </div>
+
+
+    <button type="submit" class="ui positive button">Add Character sheet</button>
+  </form>
+
+
+
+
+
+</div>

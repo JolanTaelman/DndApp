@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
 
 var CharsheetSchema = new mongoose.Schema({
-  name:string,
-  race:string,
-  dndclass: DndClass,
-  spells:[Spell],
-  created: Date
+  name:String,
+  race:String,
+  dndclass: {type: mongoose.Schema.Types.ObjectId, ref:'DndClass'},
+  spells:[{type: mongoose.Schema.Types.ObjectId, ref: 'Spell'}],
+  //created: Date
 });	
-mongoose.model('Charsheet', RecipeSchema);
+mongoose.model('Charsheet', CharsheetSchema);

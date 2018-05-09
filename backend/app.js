@@ -13,7 +13,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-mongoose.connect('mongod://localhost/recipedb');
+mongoose.connect('mongodb://localhost/DndApp');
 
 app.use(logger('dev'));
 app.use(express.json());

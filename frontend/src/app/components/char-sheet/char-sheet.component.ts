@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Charsheet} from '../../domain/charsheet/charsheet.module'
-import{DndClass} from '../../domain/dnd-class/dnd-class.module'
-import { Spell } from '../../domain/spell/spell.module';
+import {Charsheet} from '../../domain/charsheet/charsheet.model'
+import{DndClass} from '../../domain/dnd-class/dnd-class.model'
+import { Spell } from '../../domain/spell/spell.model';
 
 
 @Component({

@@ -10,7 +10,9 @@
 
 <div class="ui segment">
     <div class="ui cards">
-        <app-char-sheet *ngFor='let localCharsheet of _sheetDataService._charsheets' [charsheet] = localCharsheet></app-char-sheet>
+            
+        <app-char-sheet *ngFor='let localCharsheet of charsheets'    [charsheet] = localCharsheet></app-char-sheet>
+        <!--app-char-sheet *ngFor='let localCharsheet of _sheetDataService._charsheets' [charsheet] = localCharsheet></app-char-sheet-->
     </div>
 </div>
 

@@ -1,28 +1,63 @@
-import { Injectable } from '@angular/core';
-import { Charsheet } from '../../domain/charsheet/charsheet.module';
-import { DndClass } from '../../domain/dnd-class/dnd-class.module';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs/Observable";
+import { map } from "rxjs/operators";
 
+import { Charsheet } from "../../domain/charsheet/charsheet.model";
+import { DndClass } from "../../domain/dnd-class/dnd-class.model";
+import { Spell } from "../../domain/spell/spell.model";
 
 @Injectable()
 export class SheetDataService {
+  private readonly _appUrl = "/API/charsheets/";
+  //public _charsheets = new Array<Charsheet>();
 
-  public _charsheets = new Array<Charsheet>();
-
-  get charsheets(): Charsheet[]{
-    return this._charsheets;
-
+  get charsheets(): Observable<Charsheet[]> {
+    return this.http
+      .get(this._appUrl)
+      .pipe(
+        map((list: any[]): Charsheet[] =>
+          list.map(
+            item =>
+              new Charsheet(
+                item.name,
+                item.race,
+                new DndClass(
+                  item.dndClass,
+                  item.hitdice,
+                  item.spellcaster,
+                  item.level
+                )
+              )
+          )
+        )
+      );
   }
-  
-  newSheetAdded(Charsheet){
-    this._charsheets.push(Charsheet);
 
+  addNewSheet(Charsheet): Observable<Charsheet> {
+    return this.http
+      .post(this._appUrl, Charsheet)
+      .pipe(
+        map(
+          (item: any): Charsheet =>
+            new Charsheet(
+              item.name,
+              item.race,
+              new DndClass(
+                item.dndClass,
+                item.hitdice,
+                item.spellcaster,
+                item.level
+              )
+            )
+        )
+      );
   }
 
-  constructor() {    
-    let Charsheet1 = new Charsheet('Mark', 'Elf', new DndClass("fighter", 10, false, 1));
-    let Charsheet2 = new Charsheet('Steve', 'Human', new DndClass("Rogue", 8, false));
+  addSpellToCharsheet(spell: Spell, charsheet: Charsheet): Observable<Spell> {
+    const theUrl = `${this._appUrl}/charsheet/${charsheet.id}/spells`;
+    return this.http.post(theUrl, spell).pipe(map(Spell.fromJSON));
+  }
 
-    this._charsheets.push(Charsheet1);
-    this._charsheets.push(Charsheet2);
-    }
+  constructor(private http: HttpClient) {}
 }
