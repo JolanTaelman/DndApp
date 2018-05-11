@@ -9,7 +9,7 @@ import { CharsheetResolver } from "../services/charsheet-resolver.service";
 import {AuthGuardService} from "../user/auth-guard.service"
 
 const appRoutes: Routes = [
-  { path: "list", component: ViewCharSheetsComponent, canActivate: [AuthGuardService] },
+  { path: "list", component: ViewCharSheetsComponent , canActivate: [AuthGuardService] },
   { path: "add", component: AddCharsheetComponent },
   {
     path: ":id",
@@ -24,7 +24,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})],
   declarations: [],
-  providers: [CharsheetResolver],
+  providers: [CharsheetResolver, AuthGuardService],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
