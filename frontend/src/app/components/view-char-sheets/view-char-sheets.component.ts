@@ -16,18 +16,8 @@ export class ViewCharSheetsComponent implements OnInit {
     return this._charsheets;
   }
 
-  newSheetAdded(Charsheet) {
-    this._sheetDataService.addNewSheet(Charsheet)
-    .subscribe(item => this._charsheets.push(item));
-  }
-
   constructor(private _sheetDataService: SheetDataService) {
-    //this._classes = [new DndClass("fighter", 10, false, 1), new DndClass("Rogue", 8, false), new DndClass("Wizard", 6, true)];
-    //this._races = ["Human", "Elf", "Dwarf"];
-    //let Charsheet1 = new Charsheet('Mark', 'Elf', this._classes[0]);
-    //let Charsheet2 = new Charsheet('Steve', this._races[1], this._classes[1]);
-    //this._charsheets.push(Charsheet1);
-    //this._charsheets.push(Charsheet2);
+
   }
 
   ngOnInit() {

@@ -1,21 +1,25 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { DndClass } from "../../domain/dnd-class/dnd-class.model";
-import { Charsheet, RaceType } from "../../domain/charsheet/charsheet.model";
+import { Charsheet } from "../../domain/charsheet/charsheet.model";
 import { FormGroup, FormControl, FormBuilder, FormArray } from "@angular/forms";
 import { Spell } from "../../domain/spell/spell.model";
 import { debounceTime, distinctUntilChanged } from "rxjs/operators";
+import { SheetDataService } from "../../services/sheet-data-service/sheet-data.service";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "app-add-charsheet",
   templateUrl: "./add-charsheet.component.html",
-  styleUrls: ["./add-charsheet.component.css"]
+  styleUrls: ["./add-charsheet.component.css"],
+  providers: [SheetDataService]
+
 })
 export class AddCharsheetComponent implements OnInit {
 
+  private errorMSG: string;
   public readonly races = ['Elf', 'Human', 'Dwarf'];
   private charsheet: FormGroup;
   @Output() public newCharSheet = new EventEmitter<Charsheet>();
-  classes: DndClass[];
 
   onSubmit() {
     const newcharsheet = new Charsheet(
@@ -33,10 +37,17 @@ export class AddCharsheetComponent implements OnInit {
         newcharsheet.addSpell(new Spell(spl.spellname, spl.spelldescription));
       }
     }
-    this.newCharSheet.emit(newcharsheet);
+
+    this._sheetDataService.addNewSheet(newcharsheet).subscribe(
+      () => {},
+      (error: HttpErrorResponse) => {
+        this.errorMSG = `Error ${error.status} while adding charsheet for ${newcharsheet.name} : ${error.error}`;
+      }
+    )
+    //this.newCharSheet.emit(newcharsheet);
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private _sheetDataService: SheetDataService) {}
 
   ngOnInit() {
     this.charsheet = this.fb.group({
@@ -54,9 +65,10 @@ export class AddCharsheetComponent implements OnInit {
           this.spells.push(this.createSpells());
         }
       });
+
   }
 
-  addSheet(name: string, race: RaceType, dndClass: DndClass): boolean {
+  addSheet(name: string, race: string, dndClass: DndClass): boolean {
     const characterSheet = new Charsheet(name, race, dndClass);
     this.newCharSheet.emit(characterSheet);
     return false;

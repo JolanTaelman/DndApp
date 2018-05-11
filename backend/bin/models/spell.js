@@ -14,5 +14,4 @@ SpellSchema.pre("remove", function(next) {
   );
 });
 
-
 mongoose.model("Spell", SpellSchema);

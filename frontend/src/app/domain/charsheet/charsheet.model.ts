@@ -3,11 +3,7 @@ import { CommonModule } from "@angular/common";*/
 import { Spell } from "../spell/spell.model";
 import { DndClass } from "../dnd-class/dnd-class.model";
 
-export enum RaceType {
-  Human,
-  Elf,
-  Dwarf
-}
+
 /*
 @NgModule({
   imports: [CommonModule],
@@ -17,13 +13,13 @@ export enum RaceType {
 export class Charsheet {
   private _id: string;
   private _name: string;
-  private _race: RaceType;
+  private _race: string;
   private _dndclass: DndClass;
   private _spells: Spell[];
 
   constructor(
     name: string,
-    race: RaceType,
+    race: string,
     dndclass: DndClass,
     spells?: Spell[]
   ) {
@@ -33,14 +29,39 @@ export class Charsheet {
     this._spells = spells || new Array();
   }
 
-  get id(){
-    return this._id;
-
+  static fromJSON(json: any) {
+    const charSh = new Charsheet(
+      json.name,
+      json.race,
+      DndClass.fromJSON(json.dndclass),
+      json.spells.map(Spell.fromJSON)
+    );
+    charSh._id = json._id;
+    return charSh;
   }
 
- setid(id: string){
-   this._id = id;
- }
+  toJSON() {
+    return {
+      _id: this._id,
+      name: this._name,
+      race: this._race,
+
+      dndclass: this._dndclass.toJSON(),
+      //hitdice: this._dndclass.hitDice,
+      //spellcaster: this._dndclass.spellcaster,
+      //level: this._dndclass.level,
+
+      spells: this._spells.map(spell => spell.toJSON())
+    };
+  }
+
+  get id() {
+    return this._id;
+  }
+
+  setid(id: string) {
+    this._id = id;
+  }
 
   get dndclass(): DndClass {
     return this._dndclass;
@@ -66,24 +87,11 @@ export class Charsheet {
     this._dndclass = dndclass;
   }
 
-  set race(race: RaceType) {
+  set race(race: string) {
     this._race = race;
   }
   set name(name: string) {
     this._name = name;
   }
-  toJSON() {
-    return {
-      _id: this._id,
-      name: this._name,
-      race: this._race,
-
-      dndclass: this._dndclass.toJSON(),
-      hitdice: this._dndclass.hitDice,
-      spellcaster: this._dndclass.spellcaster,
-      level: this._dndclass.level,
-
-      spells: this._spells.map(spell => spell.toJSON())
-    };
-  }
+ 
 }

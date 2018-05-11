@@ -1,19 +1,25 @@
 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var mongoose = require('mongoose');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
+let mongoose = require('mongoose');
+let passport = require('passport');
 
-require('./bin/models/charsheet')
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-var app = express();
+require('./bin/models/User');
+require('./bin/models/charsheet');
+require('./bin/models/spell');
+require('./config/passport');
 
 mongoose.connect('mongodb://localhost/DndApp');
+
+let indexRouter = require('./routes/index');
+let usersRouter = require('./routes/users');
+
+let app = express();
+
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -23,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use(passport.initialize());
 
 
 /*

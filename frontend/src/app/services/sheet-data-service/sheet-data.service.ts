@@ -59,5 +59,11 @@ export class SheetDataService {
     return this.http.post(theUrl, spell).pipe(map(Spell.fromJSON));
   }
 
+  getCharsheet(id: string): Observable<Charsheet> {
+    return this.http
+      .get(`${this._appUrl}/charsheet/${id}`)
+      .pipe(map(Charsheet.fromJSON));
+  }
+
   constructor(private http: HttpClient) {}
 }
