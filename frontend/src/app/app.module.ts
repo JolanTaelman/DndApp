@@ -11,6 +11,9 @@ import { ViewCharSheetsComponent } from './components/view-char-sheets/view-char
 import { AddCharsheetComponent } from './components/add-charsheet/add-charsheet.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { httpInterceptorProviders } from './http-interceptors';
+import { SheetDataService } from './services/sheet-data-service/sheet-data.service';
+import { CharsheetResolver } from './services/charsheet-resolver.service';
 
 
 
@@ -29,7 +32,12 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     ReactiveFormsModule,
     AppRoutingModule
         ],
-  providers: [],
+  providers: [
+httpInterceptorProviders,
+SheetDataService,
+CharsheetResolver
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

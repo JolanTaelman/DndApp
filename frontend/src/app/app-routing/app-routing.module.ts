@@ -6,9 +6,10 @@ import { AddCharsheetComponent } from "../components/add-charsheet/add-charsheet
 import { PageNotFoundComponent } from "../components/page-not-found/page-not-found.component";
 import { CharSheetComponent } from "../components/char-sheet/char-sheet.component";
 import { CharsheetResolver } from "../services/charsheet-resolver.service";
+import {AuthGuardService} from "../user/auth-guard.service"
 
 const appRoutes: Routes = [
-  { path: "list", component: ViewCharSheetsComponent },
+  { path: "list", component: ViewCharSheetsComponent, canActivate: [AuthGuardService] },
   { path: "add", component: AddCharsheetComponent },
   {
     path: ":id",

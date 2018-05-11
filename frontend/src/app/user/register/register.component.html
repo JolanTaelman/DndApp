@@ -1,0 +1,6 @@
+<label for="username">username: </label>
+<input type="text" id="username" formControlName='username'>
+<div class="ui pointing red basic label" 
+  *ngif='user.get("username").errors?.userAlreadyExists && user.get("username").touched'>
+  A user with that name already exists.
+</div>

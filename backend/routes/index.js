@@ -85,7 +85,7 @@ router.param("charsheet", function(req, res, next, id) {
 });
 
 router.get("/API/charsheet/:charsheet", function(req, res) {
-  res.json(req.recipe);
+  res.json(req.charsheet);
 });
 
 router.delete("/API/charsheet/:charsheet", auth, function(req, res) {
