@@ -31,7 +31,7 @@ import { AuthenticationService } from "./user/authentication.service";
     BrowserModule,
     UserModule,
     AppRoutingModule,
-    /*FormsModule,*/
+    FormsModule,
     HttpClientModule,
     ReactiveFormsModule
     ],

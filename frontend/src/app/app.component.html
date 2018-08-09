@@ -1,9 +1,17 @@
-<!--app-view-char-sheets></app-view-char-sheets-->
-
+<div class="ui menu">
+    <div class="header item">Character sheet editor</div>
+    <a class="item" routerLinkActive='active' routerLink="/list"> Character sheets listed</a>
+    <a class="item" routerLinkActive='active' routerLink="/add"> Add sheet</a>
+      <div class="right menu">
+    
+          <a class="grey item" routerLinkActive='active' routerLink="/login">Login</a>  
+          <a class="grey item" routerLinkActive='active' routerLink="/register">Register</a> 
+    </div>
+  </div>
 <div class="ui container">
-  <div class="ui two item menu">
+  <!--div class="ui two item menu">
     <a class="item" routerLinkActive='active' routerLink="/list"> Character sheets</a>
     <a class="item" routerLinkActive='active' routerLink="/add"> Add sheet</a>
-  </div>
+  </div-->
   <router-outlet></router-outlet>
 </div>

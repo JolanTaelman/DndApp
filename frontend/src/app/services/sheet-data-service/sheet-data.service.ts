@@ -13,7 +13,7 @@ export class SheetDataService {
 
   get charsheets(): Observable<Charsheet[]> {
     return this.http
-      .get(this._appUrl)
+      .get(`${this._appUrl}/charsheets`)
       .pipe(
         map((list: any[]): Charsheet[] =>
           list.map(
