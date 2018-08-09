@@ -29,11 +29,12 @@ import { AuthenticationService } from "./user/authentication.service";
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
+    UserModule,
     AppRoutingModule,
-  ],
+    /*FormsModule,*/
+    HttpClientModule,
+    ReactiveFormsModule
+    ],
   providers: [httpInterceptorProviders, SheetDataService,AuthenticationService, CharsheetResolver],
   bootstrap: [AppComponent]
 })

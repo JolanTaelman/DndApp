@@ -12,7 +12,6 @@ import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
 import { AuthenticationInterceptor } from '../http-interceptors/authentication-interceptor';
 
-
 const routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
@@ -33,5 +32,6 @@ const routes = [
     AuthenticationService,
     AuthGuardService
   ],
+  exports: []
 })
 export class UserModule { }

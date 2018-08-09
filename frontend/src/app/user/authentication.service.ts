@@ -75,7 +75,7 @@ export class AuthenticationService {
   }
 
   checkUserNameAvailability(username: string): Observable<boolean> {
-    return this.http.post(`/API/users/checkusername`, { username }).pipe(
+    return this.http.post(`${this._url}/checkusername`, { username }).pipe(
       map((item: any) => {
         if (item.username === 'alreadyexists') {
           return false;

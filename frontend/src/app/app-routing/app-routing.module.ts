@@ -19,7 +19,7 @@ const appRoutes: Routes = [
   { path: "", redirectTo: "list", pathMatch: "full" },
 
   { path: "**", component: PageNotFoundComponent }
-];
+];  
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})],

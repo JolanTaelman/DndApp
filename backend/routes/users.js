@@ -1,5 +1,8 @@
 var express = require("express");
 var router = express.Router();
+let mongoose = require('mongoose');
+let User = mongoose.model('User');
+let passport = require('passport');
 
 
 router.post("/register", function(req, res, next) {
@@ -17,7 +20,7 @@ router.post("/register", function(req, res, next) {
   });
 });
 
-router.post('/login', function(req, res, next){
+router.post("/login", function(req, res, next){
   if(!req.body.username || !req.body.password){
       return res.status(400).json(
         {message: 'Please fill out all fields'});
@@ -32,7 +35,7 @@ router.post('/login', function(req, res, next){
   })(req, res, next);
 });
 
-router.post('/checkusername', function(req, res, next) {
+router.post("/checkusername", function(req, res, next) {
   User.find({username: req.body.username}, 
     function(err, result) {
       if (result.length) {

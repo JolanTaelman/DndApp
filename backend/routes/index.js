@@ -21,12 +21,12 @@ router.get("/API/charsheets/", function(req, res, next) {
 });
 
 router.post("/API/charsheets/", function(req, res, next) {
+
+  
   Spell.create(req.body.spells, function(err, spls) {
     if (err) {
       return next(err);
     }
-
-
   
   let charsheet = new Charsheet({
     name: req.body.name,

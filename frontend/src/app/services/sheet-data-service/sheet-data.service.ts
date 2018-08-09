@@ -9,8 +9,7 @@ import { Spell } from "../../domain/spell/spell.model";
 
 @Injectable()
 export class SheetDataService {
-  private readonly _appUrl = "/API/charsheets/";
-  //public _charsheets = new Array<Charsheet>();
+  private readonly _appUrl = "/API";
 
   get charsheets(): Observable<Charsheet[]> {
     return this.http
@@ -36,7 +35,7 @@ export class SheetDataService {
 
   addNewSheet(Charsheet): Observable<Charsheet> {
     return this.http
-      .post(this._appUrl, Charsheet)
+      .post(`${this._appUrl}/charsheets/`, Charsheet)
       .pipe(
         map(
           (item: any): Charsheet =>
