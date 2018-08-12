@@ -28,53 +28,6 @@ function comparePasswords(control: AbstractControl): { [key: string]: any } {
   const confirmPassword = control.get('confirmPassword');
   return password.value === confirmPassword.value ? null : { 'passwordsDiffer': true };
 }
-/*
-@Component({
-  selector: "app-register",
-  templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.css"]
-})  
-export class RegisterComponent implements OnInit {
-  public user: FormGroup;
-  public errorMsg: string;
-
-  constructor(private authenticationService: AuthenticationService, private router: Router, private fb: FormBuilder) { }
-
-  ngOnInit() {
-    this.user = this.fb.group({
-      username: [
-        "",
-        [Validators.required, Validators.minLength(4)],
-        this.serverSideValidateUsername()
-      ],
-      passwordGroup: this.fb.group(
-        {
-          password: ["", [Validators.required, passwordValidator(12)]],
-          confirmPassword: ["", Validators.required]
-        },
-        { validator: comparePasswords }
-      )
-    });
-  }
-
-  serverSideValidateUsername(): ValidatorFn {
-    return (control: AbstractControl): Observable<{ [key: string]: any }> => {
-      return this.authenticationService
-        .checkUserNameAvailability(control.value)
-        .pipe(
-          map(available => {
-            if (available) {
-              return null;
-            }
-            return { userAlreadyExists: true };
-          })
-        );
-    };
-  }
-  
-}
-*/
-
 
 @Component({
   selector: 'app-register',

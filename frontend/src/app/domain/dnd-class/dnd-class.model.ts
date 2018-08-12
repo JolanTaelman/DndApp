@@ -58,6 +58,7 @@ export class DndClass {
       json.spellcaster,
       json.level
     );
+    
     dndclass._id = json._id;
     return dndclass;
   }

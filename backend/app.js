@@ -8,6 +8,7 @@ let createError = require('http-errors');
 
 require('./bin/models/User');
 require('./bin/models/charsheet');
+require('./bin/models/dndClass')
 require('./bin/models/spell');
 require('./config/passport');
 

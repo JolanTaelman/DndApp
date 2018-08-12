@@ -23,4 +23,9 @@ export class ViewCharSheetsComponent implements OnInit {
   ngOnInit() {
     this._sheetDataService.charsheets.subscribe(
       items => this._charsheets = items);  }
+
+  removeSheet(charsheet: Charsheet){
+        this._sheetDataService.removeSheet(charsheet).subscribe();
+        location.reload();
+      }
 }

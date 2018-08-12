@@ -16,4 +16,4 @@ DndClassSchema.pre("remove", function(next) {
   );
 });
 
-mongoose.model("DndClass", DndClass);
+mongoose.model("DndClass", DndClassSchema);

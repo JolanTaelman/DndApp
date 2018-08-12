@@ -1,14 +1,17 @@
   <div class="ui stackable celled grid container">
-  <div class="two column row">
-    <div class="column">  <div class="ui segment">Name: {{charsheet.name}}</div></div>
-    <div class="column">   <div class="ui segment">Race: {{charsheet.race}}</div></div>
+  <div class="three column row">
+    <div class="column">  <div class="ui segment">Name: {{ charsheet?.name }}</div></div>
+    <div class="column">  <div class="ui segment">Race: {{charsheet?.race}}</div></div>
+    <div class="column">   <button class="ui icon button" (click)="removeSheet()">
+        <i class="trash outline icon"></i>
+      </button></div>
   </div>
-
+  
   <div class="four column row">
-    <div class="column"> <div class="ui segment">Class: {{charsheet.dndclass.name}}</div></div>
-    <div class="column">  <div class="ui segment">Level: {{charsheet.dndclass.level}}</div></div>
-    <div class="column"> <div class="ui segment">Hit Dice: {{charsheet.dndclass.level}}D{{charsheet.dndclass.hitDice}} </div></div>
-    <div class="column"> <div class="ui segment">Spellcaster: {{charsheet.dndclass.spellcaster}}</div></div>
+    <div class="column"> <div class="ui segment">Class: {{charsheet?.dndclass}}</div></div>
+    <div class="column">  <div class="ui segment">Level: {{charsheet?.level}} {{level}}</div></div>
+    <div class="column"> <div class="ui segment">Hit Dice: {{charsheet?.level}}D{{charsheet?.hitDice}} </div></div>
+    <div class="column"> <div class="ui segment">Spellcaster: {{charsheet?.spellcaster}}</div></div>
   </div>
  
   <div class="ui container">
@@ -20,9 +23,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let spell of charsheet.spells">
-        <td>{{spell.name}}</td>
-        <td>{{spell.description}}</td>
+        <tr *ngFor="let spell of charsheet?.spells">
+        <td>{{spell?.name}}</td>
+        <td>{{spell?.description}}</td>
         </tr>
       </tbody>
     </div>

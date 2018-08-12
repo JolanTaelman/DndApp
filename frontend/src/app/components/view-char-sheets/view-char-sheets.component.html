@@ -1,8 +1,5 @@
-<!--app-char-sheet *ngFor="let localCharsheet of _charsheets" [charsheet] = 'localCharsheet'></app-char-sheet-->
-
     <div class="ui cards">
-            
-        <app-char-sheet *ngFor='let localCharsheet of charsheets'    [charsheet] = localCharsheet></app-char-sheet>
-        <!--app-char-sheet *ngFor='let localCharsheet of _sheetDataService._charsheets' [charsheet] = localCharsheet></app-char-sheet-->
+    <app-char-sheet *ngFor='let localCharsheet of _charsheets' [charsheet] = 'localCharsheet'  (deleteSheet)='removeSheet($event)'></app-char-sheet>
+
     </div>
 

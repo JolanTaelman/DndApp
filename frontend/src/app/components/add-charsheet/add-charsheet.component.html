@@ -1,38 +1,15 @@
-<!--<div class="ui large form segment">
-    <h3 class="ui header">Add Charsheet</h3>
-    <div class="field">
-      <label for="name">Name:</label> 
-      <input id="name" name="name" #name>
-    </div>
-    <div class="field">
-      <label for="race">Race</label>
-        <select name="race" #race>
-         <option *ngFor="let race of races">{{race}}</option> 
-         </select>
-    </div>
-    <div class="field">
-        <label for="class">Class</label>
-         <select name="class" #class>
-           <option *ngFor="let class of classes">{{class.name}}</option> 
-          </select>
-    </div>
-    <button (click)="addSheet(name.value, race.value, class.value)"
-          class="ui positive right floated button">
-      add Character Sheet 
-    </button>
-  </div>
--->
-
 <div class='ui large form segment'>
-  <form [formGroup]='charsheet' (ngSubmit)='onSubmit()'>
+  <form class="ui form" [formGroup]='charsheet' (ngSubmit)='onSubmit()'>
     <h3>Add Charsheet</h3>
-
-    <div>
+    <div class="field">
       <label for='name_id'>name:</label>
       <input type='text' id='name_id' formControlName='name'>
+      <div class='ui pointing red basic label' *ngIf='charsheet.get("name").errors?.required && charsheet.get("name").touched'>
+        A name is required
+      </div>
     </div>
 
-    <div>
+    <div class="field">
       <label for='race_id'>race:</label>
       <select id="race_id" formControlName='race'>
         <option *ngFor="let race of races">{{race}}</option>
@@ -41,29 +18,39 @@
     </div>
 
     <div formArrayName='dndclass'>
-      <div>
+      <div class="field">
         <label for='dndclass_name'> Class:</label>
         <div>
-          <label for='dndclass_name'>class name:</label>
-          <input type="text" id='dndclass_name' formControlName='classname'>
-
-          <label for='dndclass_hitdice'>hitdice:</label>
-          <input type="number" id="dndclass_hitdice" formControlName='hitdice'>
-
-          <label for='dndclass_spellcaster'>spellcaster:</label>
-          <br>
-          <label class="switch">
-            <input type="checkbox" id="dndclass_spellcaster" formControlName='spellcaster'>
-            <span class="slider round"></span>
-          </label>
-          <br>
-          <label for='dndclass_level'>level:</label>
-          <input type="text" id="dndclass_level" formControlName='level'>
+          <div class="field">
+            <label for='dndclass_name'>class name:</label>
+            <input type="text" id='dndclass_name' formControlName='classname'>
+            <div class='ui pointing red basic label' *ngIf='charsheet.get("dndclass").get("classname").errors?.required && charsheet.get("dndclass").get("classname").touched'>
+              A class name is required
+            </div>
+          </div>
+          <div class="field">
+            <label for='dndclass_hitdice'>hitdice:</label>
+            <input type="number" min="1" id="dndclass_hitdice" formControlName='hitdice'>
+          </div>
+          <div class="field">
+            <label for='dndclass_spellcaster'>spellcaster:</label>
+            <br>
+            <label class="switch">
+              <input type="checkbox" id="dndclass_spellcaster" (change)='show=!show' formControlName='spellcaster' >
+              <span class="slider round"></span>
+            </label>
+            <br>
+          </div>
+          <div class="field">
+            <label for='dndclass_level'>level:</label>
+            <input type="number" min="1" id="dndclass_level" formControlName='level'>
+          </div>
         </div>
-
       </div>
     </div>
 
+    <div class="field" *ngIf='show'>
+   
     <div formArrayName='spells' *ngFor='let item of charsheet.get("spells").controls; 
     let i = index'>
       <div [formGroupName]='i'>
@@ -76,13 +63,8 @@
         </div>
       </div>
     </div>
-
-
-    <button type="submit" class="ui positive button">Add Character sheet</button>
+  </div>
+<br>
+    <button type="submit" [disabled]="!charsheet.valid" class="ui positive button">Add Character sheet</button>
   </form>
-
-
-
-
-
 </div>
