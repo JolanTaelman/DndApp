@@ -8,8 +8,11 @@ var CharsheetSchema = new mongoose.Schema({
   hitDice: Number,
   spellcaster: Boolean,
   level: Number,
-
-  spells:[{type: mongoose.Schema.Types.ObjectId, ref: 'Spell'}],
+  spells:[
+    {type: mongoose.Schema.Types.ObjectId,
+     ref: 'Spell'
+    }
+  ],
   //created: Date
 });	
 mongoose.model('Charsheet', CharsheetSchema);

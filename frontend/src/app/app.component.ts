@@ -14,6 +14,7 @@ export class AppComponent {
 
   get currentUser(): Observable<string> {
     return this.authService.user$;
+    
   }
 
 }

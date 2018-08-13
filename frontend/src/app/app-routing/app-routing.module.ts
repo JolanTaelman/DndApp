@@ -10,7 +10,7 @@ import {AuthGuardService} from "../user/auth-guard.service"
 
 const appRoutes: Routes = [
   { path: "list", component: ViewCharSheetsComponent , canActivate: [AuthGuardService] },
-  { path: "add", component: AddCharsheetComponent },
+  { path: "add", component: AddCharsheetComponent, canActivate: [AuthGuardService]},
   {
     path: ":id",
     component: CharSheetComponent,

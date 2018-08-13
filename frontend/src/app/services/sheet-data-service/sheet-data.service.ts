@@ -18,35 +18,6 @@ get charsheets(): Observable<Charsheet[]> {
 }
 
 
-/*s
-addNewSheet(charsheet: Charsheet): Observable<Charsheet> {
-  return this.http
-    .post(`${this._appUrl}/charsheets/`, Charsheet)
-    .pipe(map(Charsheet.fromJSON));
-  }
-
-*/
-/*
-  addNewSheet(Charsheet): Observable<Charsheet> {
-    return this.http
-      .post(`${this._appUrl}/charsheets/`, Charsheet)
-      .pipe(
-        map(
-          (item: any): Charsheet =>
-            new Charsheet(
-              item.name,
-              item.race,
-              new DndClass(
-                item.dndclass.name,
-                item.dndclass.hitdice,
-                item.dndclass.spellcaster,
-                item.dndclass.level
-              )
-            )
-        )
-      );
-  }*/
-
   addNewSheet(Charsheet): Observable<Charsheet> {
     return this.http
       .post(`${this._appUrl}/charsheets/`, Charsheet)

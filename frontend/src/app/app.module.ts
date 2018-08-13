@@ -25,7 +25,7 @@ import { AuthenticationService } from "./user/authentication.service";
     CharSheetComponent,
     ViewCharSheetsComponent,
     AddCharsheetComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

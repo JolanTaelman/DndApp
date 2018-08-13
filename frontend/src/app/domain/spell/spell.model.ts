@@ -1,12 +1,3 @@
-/*import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-@NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: []
-})*/
 export class Spell { 
   _id: string;
   _name: string;

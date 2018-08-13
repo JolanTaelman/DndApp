@@ -26,14 +26,14 @@ UserSchema.methods.validPassword = function(password) {
 
 UserSchema.methods.generateJWT = function() {
   var today = new Date();
-  var expDate = new Date(today);
-  expDate.setDate(today.getDate() + 60);
+  var exp = new Date(today);
+  exp.setDate(today.getDate() + 60);
 
   return jwt.sign(
     {
       _id: this._id,
       username: this.username,
-      expDate: parseInt(expDate.getTime()/1000)
+      exp: parseInt(exp.getTime() / 1000)
     },
     process.env.CHARSHEET_SECRET
   );

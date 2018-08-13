@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {Charsheet} from '../../domain/charsheet/charsheet.model'
-import{DndClass} from '../../domain/dnd-class/dnd-class.model'
 import { Spell } from '../../domain/spell/spell.model';
 import { ActivatedRoute } from '@angular/router';
 import { SheetDataService } from '../../services/sheet-data-service/sheet-data.service';
@@ -13,6 +12,7 @@ import { SheetDataService } from '../../services/sheet-data-service/sheet-data.s
 })
 export class CharSheetComponent implements OnInit {
   @Input() public charsheet: Charsheet;
+  spells: string;
   @Output() public deleteSheet = new EventEmitter<Charsheet>();
 
   

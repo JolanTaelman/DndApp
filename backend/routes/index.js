@@ -9,9 +9,9 @@ let DndClass = mongoose.model("DndClass");
 let auth = jwt({secret: process.env.CHARSHEET_SECRET});
 var router = express.Router();
 
-router.get("/API/charsheets/", function(req, res, next) {
+router.get("/API/charsheets/", auth, function(req, res, next) {
   let query = Charsheet.find()
-    .populate("Spells")
+    .populate("spells")
   query.exec(function(err, charsheets) {
     if (err) {
       return next(err);
@@ -20,7 +20,7 @@ router.get("/API/charsheets/", function(req, res, next) {
   });
 });
 
-router.post("/API/charsheets/", function(req, res, next) {
+router.post("/API/charsheets/", auth, function(req, res, next) {
   Spell.create(req.body.spells, function(err, spls) {
     if (err) {
       return next(err);
@@ -98,5 +98,22 @@ Spell.remove({ _id: { $in: req.body.spells } }, function(err) {
   });
 });
 
+router.param("spell", function(req, res, next, id) {
+  let query = Spell.findById(id);
+  query.exec(function(err, spell) {
+    if (err) {
+      return next(err);
+    }
+    if (!spell) {
+      return next(new Error("not found " + id));
+    }
+    req.spell = spell;
+    return next();
+  });
+});
+
+router.get('/API/spell/:spell', function(req, res) {
+  res.json(req.spell);
+});
 
 module.exports = router;
