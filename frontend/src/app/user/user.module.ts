@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
 import { AuthenticationInterceptor } from '../http-interceptors/authentication-interceptor';
+import { basehttpInterceptorProviders } from '../http-interceptors';
 
 const routes = [
   { path: 'login', component: LoginComponent },
@@ -28,6 +29,7 @@ const routes = [
   ],
   declarations: [LoginComponent, RegisterComponent, LogoutComponent], 
   providers: [
+    basehttpInterceptorProviders,
     AuthenticationInterceptor,
     AuthenticationService,
     AuthGuardService

@@ -22,10 +22,10 @@ import { validateConfig } from "../../../../node_modules/@angular/router/src/con
 
 })
 export class AddCharsheetComponent implements OnInit {
-  private errorMSG: string;
+  public errorMSG: string;
   public readonly races = ['Elf', 'Human', 'Dwarf'];
-  private charsheet: FormGroup;
-  private show: boolean = false;
+  public charsheet: FormGroup;
+  public show: boolean = false;
   //@Output() public newCharSheet = new EventEmitter<Charsheet>();
 
   onSubmit() { 

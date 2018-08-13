@@ -1,0 +1,35 @@
+{
+  "name": "dndapp",
+  "version": "1.0.0",
+  "description": "dnd app for school",
+  "homepage": "https://github.com/JolanTaelman/DndApp",
+  "scripts": {
+    "start": "node server",
+    "deploy-backend": "git subtree push --prefix backend dndapp-backend master",
+    "build-frontend": "cd frontend && ng build --prod",
+    "commit-build-changes": "git add . && git commit -m 'chore(build): build files'",
+    "deploy-frontend": "npm run build-frontend && npm run copy && npm run commit-build-changes && git subtree push --prefix serve-frontend dndapp-frontend master",
+    "copy": "cpx 'frontend/dist/**' serve-frontend/www"
+  },
+  "author": {
+    "name": "Jolan Taelman",
+    "email": "jolan.taelman.v4987@student.hogent.be",
+    "web": "https://github.com/JolanTaelman/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/JolanTaelman/DndApp"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "connect": "^3.6.5",
+    "serve-static": "^1.13.1"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "copyfiles": "^2.0.0",
+    "cpx": "^1.5.0"
+  }
+}

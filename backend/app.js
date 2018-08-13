@@ -12,12 +12,14 @@ require('./bin/models/dndClass')
 require('./bin/models/spell');
 require('./config/passport');
 
-mongoose.connect('mongodb://localhost/DndApp');
+mongoose.connect(process.env.DND_DATABASE ||'mongodb://localhost/DndApp');
 
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
 
 let app = express();
+let cors = require('cors');
+app.use(cors({origin: "*"}));
 
 
 
