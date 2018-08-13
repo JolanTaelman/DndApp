@@ -9,11 +9,13 @@ import { Observable } from 'rxjs/Observable';
 })
 export class AppComponent {
   title = 'DndApp';
+  user  = this.currentUser._subscribe.name;
 
   constructor(private authService: AuthenticationService) {}
 
   get currentUser(): Observable<string> {
     return this.authService.user$;
+    
   }
 
 }

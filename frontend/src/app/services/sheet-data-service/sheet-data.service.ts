@@ -76,6 +76,8 @@ addNewSheet(charsheet: Charsheet): Observable<Charsheet> {
       .pipe(map(Charsheet.fromJSON));
   }
 
+
+
   removeSheet(charsheet: Charsheet): Observable<Charsheet> {
     return this.http
       .delete(`${this._appUrl}/charsheet/${charsheet.id}`)
